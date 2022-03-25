@@ -52,19 +52,13 @@ else
     mv constraints_$n.simp1.simp constraints_$n.simp2
 fi
 
-if [[ $(wc -l <constraints_$n.simp2) -ge 3 ]] #if the constraint file only has two lines or less after simplification, output unsat
+#step 5: cube and conquer if necessary, then solve
+
+#everything after this line should be done on compute canada through slurm
+if [ "$r" != "0" ] 
 then 
-    #step 5: cube and conquer if necessary, then solve
-
-    #everything after this line should be done on compute canada through slurm
-    if [ "$r" != "0" ] 
-    then 
-        ./3-cube-merge-solve.sh $n $r constraints_$n.simp2 #need to sbatch this
-    else
-        ./maplesat-ks/simp/maplesat_static constraints_$n.simp2 -no-pre -exhaustive=$n.exhaust -order=$n
-    fi
-
-    #step 6: checking if there exist embeddable solution should move to local
-
-    #output the number of KS system is there is any
+    ./3-cube-merge-solve.sh $n $r constraints_$n.simp2 #need to sbatch this
+else
+    ./maplesat-ks/simp/maplesat_static constraints_$n.simp2 -no-pre -exhaustive=$n.exhaust -order=$n
 fi
+
