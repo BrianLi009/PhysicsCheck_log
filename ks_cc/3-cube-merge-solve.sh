@@ -34,7 +34,7 @@ echo "#SBATCH --array=0-${new_index}" >> join-solve-$n.sh
 echo "#SBATCH --time=03:00:00" >> join-solve-$n.sh #can modify runtime based on instance size
 echo "#SBATCH --account=def-janehowe" >> join-solve-$n.sh
 echo "#SBATCH --mem=2G" >> join-solve-$n.sh #can modify memory based on instance size
-echo "./simplification/adjoin-cube-simplify.sh $n $f $n-cubes\$cube_file \$SLURM_ARRAY_TASK_ID 50" >> join-solve-$n.sh
+echo "./simplification/adjoin-cube-simplify.sh $n $f $cube_file \$SLURM_ARRAY_TASK_ID 50" >> join-solve-$n.sh
 #join the cube to the instance, simplified until 50% of the variables are eliminated
 echo "./maplesat-ks/simp/maplesat_static $cube_file\$SLURM_ARRAY_TASK_ID.adj.simp -no-pre -exhaustive=$n-\$SLURM_ARRAY_TASK_ID.exhaust -order=$n" >> join-solve-$n.sh
 

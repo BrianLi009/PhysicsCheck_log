@@ -37,7 +37,7 @@ m=$((n*(n-1)/2)) # Number of edge variables in instance
 
 # Determine the number of unit clauses to add
 unitlines=0
-for b in $(sed "$((i+1))q;d" "$c")
+for b in $(sed "$((i+1))q;d" "$n-cubes/$c")
 do
     if [[ "$b" != "a" && "$b" != "0" ]]
     then
@@ -52,7 +52,7 @@ newlines=$((numlines+unitlines))
 echo "p cnf $numvars $newlines" > "$adj"
 tail "$f" -n +2 >> "$adj"
 
-for b in $(sed "$((i+1))q;d" "$c")
+for b in $(sed "$((i+1))q;d" "$n-cubes/$c")
 do
     if [[ "$b" != "a" && "$b" != "0" ]]
     then
