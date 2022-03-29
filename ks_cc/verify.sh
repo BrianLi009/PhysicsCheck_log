@@ -1,8 +1,11 @@
 #!/bin/bash
 
+#set -x
+
 o=$1 #first index of cube files to check within directory d
 i=$2 #last index of cube files to check within directory d
-d=$3 #all log files should be stored in a directory
+n=$3 #order
+d=$4 #all log files should be stored in a directory
 
 cd $d
 
@@ -18,7 +21,7 @@ do
                         if grep -q "Number of solutions" $file
                         then
                                 number=( $(grep "Number of solutions"  $file | cut -f2 -d:) )
-                                output_num=( $(wc -l 19-$index.exhaust) )
+                                output_num=( $(wc -l $n-$index.exhaust) )
                                 if [ $number != $output_num ]
                                 then
                                     echo "$index output error" >> verified.txt
