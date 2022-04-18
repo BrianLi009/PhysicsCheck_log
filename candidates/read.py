@@ -126,6 +126,10 @@ for line in f.readlines():
 
 f.close()
 
+if count == 0:
+    print("No order {0} candidates".format(n))
+    exit()
+
 if quiet == False and verbose == False:
     print("")
 
