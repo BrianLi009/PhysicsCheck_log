@@ -4,4 +4,4 @@
 
 **job-logs:** log files of jobs submitted on compute canada
 
-**ks_cc:** the pipeline being used on compute canada
+**compute-canada-script:** additional script for CC
