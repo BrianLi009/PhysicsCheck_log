@@ -1,0 +1,723 @@
+c --- [ banner ] -------------------------------------------------------------
+c 
+c CaDiCaL Radically Simplified CDCL SAT Solver
+c Copyright (c) 2016-2021 A. Biere, M. Fleury, N. Froleyks
+c 
+c Version 1.5.2 ca9bff05c11bde5eae4912f9932871d1527e61d8
+c g++ (GCC) 9.3.0 -Wall -Wextra -O3 -DNDEBUG
+c Sun May 1 02:23:23 EDT 2022 Linux gra-login1 3.10.0-1160.59.1.el7.x86_64 x86_64
+c 
+c --- [ limit ] --------------------------------------------------------------
+c 
+c setting conflict limit to 200000 conflicts (due to '200000')
+c 
+c --- [ parsing input ] ------------------------------------------------------
+c 
+c reading DIMACS file from '12.cubes1119.adj'
+c opening file to read '12.cubes1119.adj'
+c found 'p cnf 5320 924210' header
+c parsed 924210 clauses in 8.17 seconds process time
+c closing file '12.cubes1119.adj'
+c after reading 686668116 bytes 654.9 MB
+c 
+c --- [ options ] ------------------------------------------------------------
+c 
+c all options are set to their default value
+c 
+c --- [ solving ] ------------------------------------------------------------
+c 
+c time measured in process time since initialization
+c 
+c  seconds   reductions  redundant  irredundant
+c          MB    restarts       trail      variables
+c           level   conflicts       glue        remaining
+c 
+c *  8.17 687  0 0   0    0    0  0% 0 923580 4075 77%
+c {  9.16 735  0 0   0    0    0  0% 0 923580 4075 77%
+c i  9.55 742 76 0   0   11   10 44% 3 923580 4064 76%
+c i  9.77 748 75 0   0   22   18 50% 5 923580 4063 76%
+c i  9.99 749 63 0   0   46   33 48% 4 923580 4045 76%
+c i 10.76 758 54 0   7   97   78 49% 13 923580 4042 76%
+c i 11.02 764 60 0  11  113   93 49% 15 923580 4041 76%
+c i 11.63 769 68 0  19  141  117 49% 21 923580 4040 76%
+c i 11.63 769 67 0  19  142  117 49% 20 923580 4039 76%
+c i 11.64 769 67 0  19  143  117 49% 20 923580 4038 76%
+c i 12.28 771 52 0  29  236  163 45% 17 923580 4037 76%
+c i 12.30 771 52 0  29  240  166 45% 17 923580 4036 76%
+c i 12.38 771 52 0  29  251  174 45% 18 923580 4035 76%
+c i 12.42 771 53 0  29  260  182 45% 18 923580 4034 76%
+c i 12.42 771 53 0  29  261  182 45% 18 923580 4033 76%
+c i 12.48 771 53 0  29  268  188 46% 19 923580 4032 76%
+c - 14.97 732 54 1  36  301  207 46% 20 265495 4032 76%
+c i 15.32 711 82 1  41  361  262 46% 22 265495 4031 76%
+c i 15.51 711 86 1  46  385  279 46% 22 265495 4027 76%
+c i 15.73 711 87 1  50  401  292 46% 22 265495 4026 76%
+c 
+c  seconds   reductions  redundant   irredundant
+c          MB    restarts       trail       variables
+c           level   conflicts       glue         remaining
+c 
+c i 15.76 711 88 1  51  405  294 46% 22 265495 4024 76%
+c i 15.91 711 87 1  55  418  305 46% 22 265495 4023 76%
+c i 16.01 711 86 1  58  428  314 46% 23 265495 4009 75%
+c i 16.07 711 86 1  60  434  319 46% 23 265495 4008 75%
+c i 16.13 712 86 1  61  440  323 46% 23 265495 4007 75%
+c i 16.13 712 86 1  62  441  323 46% 23 265495 4006 75%
+c i 16.15 712 87 1  62  446  326 46% 23 265495 4004 75%
+c i 16.20 712 88 1  63  453  332 47% 24 265495 4003 75%
+c i 16.22 712 88 1  64  454  332 47% 24 265495 4002 75%
+c i 16.29 712 87 1  67  474  349 47% 25 265495 3999 75%
+c i 16.30 712 87 1  68  477  351 47% 25 265495 3998 75%
+c i 16.35 712 90 1  71  505  359 47% 27 265495 3995 75%
+c i 16.35 712 90 1  72  509  360 47% 27 265495 3993 75%
+c i 16.36 712 90 1  73  512  362 47% 27 265495 3992 75%
+c i 16.41 712 92 1  76  527  370 47% 28 265495 3989 75%
+c i 16.42 712 93 1  77  533  373 47% 28 265495 3988 75%
+c i 16.65 712 91 1  87  568  402 47% 29 265495 3987 75%
+c i 16.67 712 91 1  88  571  404 47% 29 265495 3986 75%
+c i 16.71 712 92 1  89  579  411 47% 29 265495 3985 75%
+c i 16.73 712 91 1  91  584  415 47% 29 265495 3984 75%
+c 
+c  seconds   reductions  redundant   irredundant
+c          MB    restarts       trail       variables
+c           level   conflicts       glue         remaining
+c 
+c i 17.10 713 90 1  99  639  460 47% 29 265495 3983 75%
+c i 17.17 713 90 1 101  649  468 47% 30 265495 3982 75%
+c i 17.18 713 90 1 101  652  469 47% 30 265495 3981 75%
+c i 17.23 713 89 1 103  659  473 47% 29 265495 3980 75%
+c i 17.42 713 90 1 107  693  501 47% 30 265495 3979 75%
+c i 17.55 713 89 1 112  715  519 48% 30 265495 3978 75%
+c i 17.58 713 89 1 114  723  525 48% 30 265495 3977 75%
+c i 17.58 713 89 1 114  724  525 48% 30 265495 3976 75%
+c i 17.75 713 87 1 122  756  554 48% 30 265495 3975 75%
+c i 17.76 713 87 1 122  757  554 48% 30 265495 3974 75%
+c i 17.93 713 88 1 126  774  568 48% 32 265495 3973 75%
+c i 18.00 713 89 1 128  784  577 48% 32 265495 3972 75%
+c i 18.10 713 90 1 132  801  587 48% 32 265495 3967 75%
+c i 18.12 713 90 1 133  804  588 48% 32 265495 3965 75%
+c i 18.42 713 92 1 145  853  622 48% 34 265495 3964 75%
+c i 18.43 713 92 1 146  854  622 48% 34 265495 3963 74%
+c i 18.58 713 89 1 155  895  646 48% 33 265495 3888 73%
+c i 18.65 713 89 1 155  898  648 48% 33 265495 3887 73%
+c i 18.65 713 88 1 155  902  651 48% 33 265495 3886 73%
+c i 18.74 713 89 1 156  921  666 48% 33 265495 3885 73%
+c 
+c  seconds   reductions  redundant   irredundant
+c          MB    restarts       trail       variables
+c           level   conflicts       glue         remaining
+c 
+c i 18.78 713 89 1 156  923  667 48% 33 265495 3884 73%
+c i 19.22 713 95 1 165  997  734 48% 34 265495 3883 73%
+c i 19.22 713 95 1 166  998  734 48% 34 265495 3882 73%
+c i 19.23 713 94 1 166  999  734 48% 34 265495 3881 73%
+c i 19.23 713 94 1 166 1001  735 48% 34 265495 3880 73%
+c } 19.23 713 94 1 166 1001  735 48% 34 265495 3880 73%
+c [ 19.23 713  0 1 166 1001  735  0% 0 265495 3880 73%
+c F 19.24 713  7 1 166 1002  736 32% 2 265495 3880 73%
+c i 19.31 713 10 1 166 1029  746 37% 7 265495 3879 73%
+c i 19.33 713 11 1 166 1039  755 41% 7 265495 3878 73%
+c i 19.33 713 11 1 166 1040  755 41% 7 265495 3877 73%
+c i 19.33 713 11 1 166 1045  759 43% 6 265495 3876 73%
+c i 19.34 713 11 1 166 1049  761 44% 6 265495 3875 73%
+c i 19.36 713 11 1 166 1054  765 45% 6 265495 3874 73%
+c i 19.37 713 11 1 166 1056  766 45% 7 265495 3873 73%
+c i 19.37 713 11 1 166 1058  767 45% 7 265495 3872 73%
+c i 19.37 713 11 1 166 1059  767 46% 7 265495 3871 73%
+c i 19.38 713 11 1 166 1062  768 46% 7 265495 3870 73%
+c i 19.45 713 15 1 166 1127  819 52% 11 265495 3869 73%
+c - 19.96 781 16 2 166 1159  743 53% 12 223636 3869 73%
+c 
+c  seconds   reductions  redundant   irredundant
+c          MB    restarts       trail       variables
+c           level   conflicts       glue         remaining
+c 
+c i 19.99 765 16 2 166 1160  743 53% 12 223636 3868 73%
+c i 20.08 765 16 2 166 1196  772 54% 13 223636 3867 73%
+c i 20.12 765 16 2 166 1279  820 55% 13 223636 3866 73%
+c i 20.14 765 16 2 166 1297  830 55% 13 223636 3865 73%
+c i 20.27 765 16 2 166 1672 1029 56% 14 223636 3864 73%
+c ] 20.34 765 15 2 166 1894 1167 56% 13 223636 3864 73%
+c 1 20.34 765 15 2 166 1894 1167 56% 13 223636 3864 73%
+c 
+c --- [ writing output ] -----------------------------------------------------
+c 
+c writing simplified CNF to DIMACS file 'simp/12.cubes1119.adj.simp1'
+c * 20.34 765 15 2 166 1894 1167 56% 13 223636 3864 73%
+c opening file to write 'simp/12.cubes1119.adj.simp1'
+c writing 'p cnf 5320 223621' header
+c closing file 'simp/12.cubes1119.adj.simp1'
+c after writing 90556623 bytes 86.4 MB
+c wrote 223621 clauses in 0.63 seconds process time
+c 
+c --- [ writing extension ] --------------------------------------------------
+c 
+c writing extension stack to 'simp/12.cubes1119.adj.ext1'
+c opening file to write 'simp/12.cubes1119.adj.ext1'
+c closing file 'simp/12.cubes1119.adj.ext1'
+c after writing 20948 bytes 0.0 MB
+c wrote 1456 witnesses in 0.00 seconds process time
+c 
+c --- [ result ] -------------------------------------------------------------
+c 
+s SATISFIABLE
+c 
+c --- [ run-time profiling ] -------------------------------------------------
+c 
+c process time taken by individual solving procedures
+c (percentage relative to process time for solving)
+c 
+c        12.17  100.00% search
+c        10.07   82.72% unstable
+c         8.17   67.09% parse
+c         1.12    9.16% stable
+c         0.99    8.12% lucky
+c         0.00    0.00% simplify
+c   =================================
+c        12.17   58.06% solve
+c 
+c last line shows process time for solving
+c (percentage relative to total process time)
+c 
+c --- [ statistics ] ---------------------------------------------------------
+c 
+c chronological:               565        29.83 %  of conflicts
+c conflicts:                  1894       155.57    per second
+c decisions:                 21268      1746.91    per second
+c fixed:                      1456        27.37 %  of all variables
+c learned:                    1855        97.94 %  per conflict
+c learned_lits:             280460       100.00 %  learned literals
+c minimized:                     0         0.00 %  learned literals
+c shrunken:                 141530        50.46 %  learned literals
+c minishrunken:              27433         9.78 %  learned literals
+c propagations:             523683         0.04 M  per second
+c reduced:                      71         3.75 %  per conflict
+c rephased:                      1      1894.00    interval
+c restarts:                    166        11.41    interval
+c stabilizing:                   1        47.15 %  of conflicts
+c subsumed:                    481         0.03 %  of all clauses
+c 
+c seconds are measured in process time for solving
+c 
+c --- [ resources ] ----------------------------------------------------------
+c 
+c total process time since initialization:        20.97    seconds
+c total real time since initialization:           21.10    seconds
+c maximum resident set size of process:          795.14    MB
+c 
+c --- [ shutting down ] ------------------------------------------------------
+c 
+c exit 10
+c --- [ banner ] -------------------------------------------------------------
+c 
+c CaDiCaL Radically Simplified CDCL SAT Solver
+c Copyright (c) 2016-2021 A. Biere, M. Fleury, N. Froleyks
+c 
+c Version 1.5.2 ca9bff05c11bde5eae4912f9932871d1527e61d8
+c g++ (GCC) 9.3.0 -Wall -Wextra -O3 -DNDEBUG
+c Sun May 1 02:23:23 EDT 2022 Linux gra-login1 3.10.0-1160.59.1.el7.x86_64 x86_64
+c 
+c --- [ limit ] --------------------------------------------------------------
+c 
+c setting conflict limit to 200000 conflicts (due to '200000')
+c 
+c --- [ parsing input ] ------------------------------------------------------
+c 
+c reading DIMACS file from 'simp/12.cubes1119.adj.simp1'
+c opening file to read 'simp/12.cubes1119.adj.simp1'
+c found 'p cnf 5320 223621' header
+c parsed 223621 clauses in 1.03 seconds process time
+c closing file 'simp/12.cubes1119.adj.simp1'
+c after reading 90556623 bytes 86.4 MB
+c 
+c --- [ options ] ------------------------------------------------------------
+c 
+c all options are set to their default value
+c 
+c --- [ solving ] ------------------------------------------------------------
+c 
+c time measured in process time since initialization
+c 
+c  seconds  reductions  redundant  irredundant
+c         MB    restarts       trail      variables
+c          level   conflicts       glue        remaining
+c 
+c *  1.03 95  0 0   0    0    0  0% 0 223621 3852 72%
+c {  1.13 107  0 0   0    0    0  0% 0 223621 3852 72%
+c i  1.42 115 86 0   6   47   44 25% 31 223621 3851 72%
+c i  1.48 116 73 0   6   71   66 26% 28 223621 3850 72%
+c i  1.56 116 52 0   6  185  164 27% 28 223621 3849 72%
+c i  1.57 116 49 0   6  216  189 28% 27 223621 3848 72%
+c i  1.58 116 49 0   6  219  191 28% 27 223621 3847 72%
+c i  1.58 116 48 0   6  227  198 28% 27 223621 3846 72%
+c i  1.58 116 48 0   6  233  203 28% 27 223621 3845 72%
+c i  1.66 117 50 0   6  279  229 27% 27 223621 3844 72%
+c -  1.79 116 49 1   6  301  247 27% 27 223597 3844 72%
+c i  1.82 113 49 1   6  306  251 27% 26 223597 3843 72%
+c i  1.94 113 40 1  11  454  323 28% 23 223597 3842 72%
+c i  1.94 113 40 1  12  455  323 28% 23 223597 3841 72%
+c i  2.67 120 36 1  40  854  489 23% 22 223597 3840 72%
+c i  2.70 120 36 1  40  857  491 23% 22 223597 3839 72%
+c i  2.71 120 36 1  40  865  498 23% 22 223597 3838 72%
+c i  2.74 121 36 1  40  877  507 23% 22 223597 3837 72%
+c i  2.96 123 39 1  46  915  539 23% 23 223597 3836 72%
+c i  2.99 123 40 1  50  935  557 23% 24 223597 3835 72%
+c 
+c  seconds   reductions  redundant   irredundant
+c          MB    restarts       trail       variables
+c           level   conflicts       glue         remaining
+c 
+c i  3.00 123 39 1  52  940  561 23% 24 223597 3834 72%
+c }  3.18 126 40 1  66 1000  618 23% 24 223597 3834 72%
+c [  3.18 126  0 1  66 1000  618  0% 0 223597 3834 72%
+c O  3.20 126 36 1  66 1002  620 13% 4 223597 3834 72%
+c -  3.65 206 17 2  66 1110  576 25% 11 223567 3834 72%
+c ]  3.75 203 18 2  66 1182  643 27% 14 223567 3834 72%
+c 1  3.75 203 18 2  66 1182  643 27% 14 223567 3834 72%
+c 
+c --- [ writing output ] -----------------------------------------------------
+c 
+c writing simplified CNF to DIMACS file 'simp/12.cubes1119.adj.simp2'
+c *  3.75 203 18 2  66 1182  643 27% 14 223567 3834 72%
+c opening file to write 'simp/12.cubes1119.adj.simp2'
+c writing 'p cnf 5320 223567' header
+c closing file 'simp/12.cubes1119.adj.simp2'
+c after writing 86923330 bytes 82.9 MB
+c wrote 223567 clauses in 0.57 seconds process time
+c 
+c --- [ writing extension ] --------------------------------------------------
+c 
+c writing extension stack to 'simp/12.cubes1119.adj.ext2'
+c opening file to write 'simp/12.cubes1119.adj.ext2'
+c closing file 'simp/12.cubes1119.adj.ext2'
+c after writing 288 bytes 0.0 MB
+c wrote 18 witnesses in 0.00 seconds process time
+c 
+c --- [ result ] -------------------------------------------------------------
+c 
+s SATISFIABLE
+c 
+c --- [ run-time profiling ] -------------------------------------------------
+c 
+c process time taken by individual solving procedures
+c (percentage relative to process time for solving)
+c 
+c         2.72   99.99% search
+c         2.06   75.57% unstable
+c         1.03   37.70% parse
+c         0.57   20.78% stable
+c         0.10    3.63% lucky
+c         0.00    0.00% simplify
+c   =================================
+c         2.72   63.00% solve
+c 
+c last line shows process time for solving
+c (percentage relative to total process time)
+c 
+c --- [ statistics ] ---------------------------------------------------------
+c 
+c chronological:               316        26.73 %  of conflicts
+c conflicts:                  1182       434.42    per second
+c decisions:                  9644      3544.45    per second
+c fixed:                        18         0.34 %  of all variables
+c learned:                    1153        97.55 %  per conflict
+c learned_lits:             138280       100.00 %  learned literals
+c minimized:                     0         0.00 %  learned literals
+c shrunken:                  70484        50.97 %  learned literals
+c minishrunken:              14112        10.21 %  learned literals
+c propagations:             262721         0.10 M  per second
+c reduced:                     125        10.58 %  per conflict
+c rephased:                      1      1182.00    interval
+c restarts:                     66        17.91    interval
+c stabilizing:                   1        15.40 %  of conflicts
+c subsumed:                    367         0.08 %  of all clauses
+c 
+c seconds are measured in process time for solving
+c 
+c --- [ resources ] ----------------------------------------------------------
+c 
+c total process time since initialization:         4.32    seconds
+c total real time since initialization:            4.34    seconds
+c maximum resident set size of process:          205.82    MB
+c 
+c --- [ shutting down ] ------------------------------------------------------
+c 
+c exit 10
+c --- [ banner ] -------------------------------------------------------------
+c 
+c CaDiCaL Radically Simplified CDCL SAT Solver
+c Copyright (c) 2016-2021 A. Biere, M. Fleury, N. Froleyks
+c 
+c Version 1.5.2 ca9bff05c11bde5eae4912f9932871d1527e61d8
+c g++ (GCC) 9.3.0 -Wall -Wextra -O3 -DNDEBUG
+c Sun May 1 02:23:23 EDT 2022 Linux gra-login1 3.10.0-1160.59.1.el7.x86_64 x86_64
+c 
+c --- [ limit ] --------------------------------------------------------------
+c 
+c setting conflict limit to 200000 conflicts (due to '200000')
+c 
+c --- [ parsing input ] ------------------------------------------------------
+c 
+c reading DIMACS file from 'simp/12.cubes1119.adj.simp2'
+c opening file to read 'simp/12.cubes1119.adj.simp2'
+c found 'p cnf 5320 223567' header
+c parsed 223567 clauses in 0.99 seconds process time
+c closing file 'simp/12.cubes1119.adj.simp2'
+c after reading 86923330 bytes 82.9 MB
+c 
+c --- [ options ] ------------------------------------------------------------
+c 
+c all options are set to their default value
+c 
+c --- [ solving ] ------------------------------------------------------------
+c 
+c time measured in process time since initialization
+c 
+c  seconds  reductions  redundant  irredundant
+c         MB    restarts       trail      variables
+c          level   conflicts       glue        remaining
+c 
+c *  0.99 93  0 0   0    0    0  0% 0 223567 3834 72%
+c {  1.09 106  0 0   0    0    0  0% 0 223567 3834 72%
+c i  1.94 125 58 0  28  182  153 23% 26 223567 3832 72%
+c i  2.11 126 56 0  31  254  210 23% 26 223567 3831 72%
+c i  2.11 126 56 0  31  256  211 23% 25 223567 3830 72%
+c i  2.12 126 55 0  31  261  214 24% 25 223567 3829 72%
+c i  2.12 126 55 0  31  262  214 24% 25 223567 3828 72%
+c i  2.12 126 54 0  31  263  214 24% 25 223567 3827 72%
+c -  2.26 126 50 1  31  302  248 24% 24 223546 3827 72%
+c i  2.33 117 48 1  31  345  285 25% 24 223546 3826 72%
+c i  2.35 117 47 1  31  369  305 25% 24 223546 3825 72%
+c i  2.44 117 42 1  34  502  407 26% 24 223546 3824 72%
+c i  2.45 117 41 1  34  528  425 26% 24 223546 3823 72%
+c i  2.56 117 41 1  44  581  470 26% 25 223546 3822 72%
+c i  2.57 117 42 1  44  589  476 26% 24 223546 3821 72%
+c i  2.57 117 42 1  44  594  480 26% 24 223546 3820 72%
+c i  2.60 117 43 1  45  604  489 26% 25 223546 3819 72%
+c i  2.67 118 52 1  46  650  525 26% 24 223546 3817 72%
+c i  3.61 122 53 1  80  954  771 25% 25 223546 3816 72%
+c }  3.87 125 53 1  87 1000  804 25% 26 223546 3816 72%
+c 
+c  seconds   reductions  redundant  irredundant
+c          MB    restarts       trail      variables
+c           level   conflicts       glue        remaining
+c 
+c [  3.87 125  0 1  87 1000  804  0% 0 223546 3816 72%
+c O  3.88 125 84 1  87 1003  807 19% 48 223546 3816 72%
+c -  4.43 202 29 2  87 1113  782 28% 24 223513 3816 72%
+c i  4.53 196 31 2  87 1146  809 27% 26 223513 3815 72%
+c i  4.59 196 31 2  87 1183  843 27% 24 223513 3814 72%
+c i  4.76 196 28 2  87 1408 1022 28% 23 223513 3813 72%
+c -  5.47 196 23 3  88 2330 1352 29% 20 223504 3813 72%
+c ]  6.18 192 22 3  88 3002 1815 40% 18 223504 3813 72%
+c {  6.18 192 53 3  88 3002 1815 35% 26 223504 3813 72%
+c F  6.23 192 53 3  89 3005 1818 35% 26 223504 3813 72%
+c -  7.03 192 39 4  96 3949 1722 36% 22 223504 3813 72%
+c }  7.32 192 35 4  99 4730 2261 37% 21 223504 3813 72%
+c 1  7.32 192 35 4  99 4730 2261 37% 21 223504 3813 72%
+c 
+c --- [ writing output ] -----------------------------------------------------
+c 
+c writing simplified CNF to DIMACS file 'simp/12.cubes1119.adj.simp3'
+c *  7.32 192 35 4  99 4730 2261 37% 21 223504 3813 72%
+c opening file to write 'simp/12.cubes1119.adj.simp3'
+c writing 'p cnf 5320 223504' header
+c closing file 'simp/12.cubes1119.adj.simp3'
+c after writing 82256607 bytes 78.4 MB
+c wrote 223504 clauses in 0.55 seconds process time
+c 
+c --- [ writing extension ] --------------------------------------------------
+c 
+c writing extension stack to 'simp/12.cubes1119.adj.ext3'
+c opening file to write 'simp/12.cubes1119.adj.ext3'
+c closing file 'simp/12.cubes1119.adj.ext3'
+c after writing 336 bytes 0.0 MB
+c wrote 21 witnesses in 0.00 seconds process time
+c 
+c --- [ result ] -------------------------------------------------------------
+c 
+s SATISFIABLE
+c 
+c --- [ run-time profiling ] -------------------------------------------------
+c 
+c process time taken by individual solving procedures
+c (percentage relative to process time for solving)
+c 
+c         6.33  100.00% search
+c         3.91   61.82% unstable
+c         2.31   36.50% stable
+c         0.99   15.61% parse
+c         0.11    1.67% lucky
+c         0.00    0.00% simplify
+c   =================================
+c         6.33   80.41% solve
+c 
+c last line shows process time for solving
+c (percentage relative to total process time)
+c 
+c --- [ statistics ] ---------------------------------------------------------
+c 
+c chronological:               964        20.38 %  of conflicts
+c conflicts:                  4730       747.09    per second
+c decisions:                 15195      2400.00    per second
+c fixed:                        21         0.39 %  of all variables
+c learned:                    4627        97.82 %  per conflict
+c learned_lits:             869020       100.00 %  learned literals
+c minimized:                     0         0.00 %  learned literals
+c shrunken:                 398629        45.87 %  learned literals
+c minishrunken:             128138        14.75 %  learned literals
+c propagations:            1020476         0.16 M  per second
+c reduced:                    1286        27.19 %  per conflict
+c rephased:                      2      2365.00    interval
+c restarts:                     99        47.78    interval
+c stabilizing:                   1        42.33 %  of conflicts
+c subsumed:                   1059         0.23 %  of all clauses
+c 
+c seconds are measured in process time for solving
+c 
+c --- [ resources ] ----------------------------------------------------------
+c 
+c total process time since initialization:         7.87    seconds
+c total real time since initialization:            7.93    seconds
+c maximum resident set size of process:          271.23    MB
+c 
+c --- [ shutting down ] ------------------------------------------------------
+c 
+c exit 10
+c --- [ banner ] -------------------------------------------------------------
+c 
+c CaDiCaL Radically Simplified CDCL SAT Solver
+c Copyright (c) 2016-2021 A. Biere, M. Fleury, N. Froleyks
+c 
+c Version 1.5.2 ca9bff05c11bde5eae4912f9932871d1527e61d8
+c g++ (GCC) 9.3.0 -Wall -Wextra -O3 -DNDEBUG
+c Sun May 1 02:23:23 EDT 2022 Linux gra-login1 3.10.0-1160.59.1.el7.x86_64 x86_64
+c 
+c --- [ limit ] --------------------------------------------------------------
+c 
+c setting conflict limit to 200000 conflicts (due to '200000')
+c 
+c --- [ parsing input ] ------------------------------------------------------
+c 
+c reading DIMACS file from 'simp/12.cubes1119.adj.simp3'
+c opening file to read 'simp/12.cubes1119.adj.simp3'
+c found 'p cnf 5320 223504' header
+c parsed 223504 clauses in 0.95 seconds process time
+c closing file 'simp/12.cubes1119.adj.simp3'
+c after reading 82256607 bytes 78.4 MB
+c 
+c --- [ options ] ------------------------------------------------------------
+c 
+c all options are set to their default value
+c 
+c --- [ solving ] ------------------------------------------------------------
+c 
+c time measured in process time since initialization
+c 
+c  seconds  reductions  redundant  irredundant
+c         MB    restarts       trail      variables
+c          level   conflicts       glue        remaining
+c 
+c *  0.96 89  0 0   0    0    0  0% 0 223504 3813 72%
+c {  1.07 102  0 0   0    0    0  0% 0 223504 3813 72%
+c i  2.27 120 64 0  42  249  184 19% 25 223504 3812 72%
+c i  2.34 120 64 0  44  278  210 19% 25 223504 3811 72%
+c -  2.59 121 68 1  47  300  230 19% 26 223498 3811 72%
+c }  4.28 120 49 1  82 1001  805 23% 23 223498 3811 72%
+c [  4.28 120  0 1  82 1001  805  0% 0 223498 3811 72%
+c O  4.28 120 36 1  82 1002  806  5% 1 223498 3811 72%
+c -  4.61 196 45 2  82 1109  785 24% 13 223498 3811 72%
+c -  5.24 185 42 3  83 2323 1342 40% 19 223498 3811 72%
+c ]  5.44 185 34 3  83 3002 1783 40% 18 223498 3811 72%
+c {  5.44 185 49 3  83 3002 1783 31% 23 223498 3811 72%
+c F  5.48 185 49 3  83 3003 1784 31% 23 223498 3811 72%
+c -  7.82 185 42 4 149 3943 1831 33% 22 223498 3811 72%
+c i  8.13 185 37 4 159 4324 1969 32% 20 223498 3810 72%
+c i  8.40 185 37 4 162 4401 2043 32% 20 223498 3809 72%
+c 2 10.30 185 37 4 224 5000 4111 32% 20 223404 3792 71%
+c p 15.52 185 37 4 224 5000 9296 32% 20 223404 3744 70%
+c d 15.70 185 37 4 224 5000 9254 32% 20 223258 3742 70%
+c - 18.78 184 39 5 340 5966 2206 32% 21 223258 3742 70%
+c 
+c  seconds   reductions  redundant   irredundant
+c          MB    restarts       trail       variables
+c           level   conflicts       glue         remaining
+c 
+c # 18.81 184 39 5 340 6006 2238 32% 21 223258 3742 70%
+c } 19.94 184 36 5 364 7004 2870 33% 21 223258 3742 70%
+c [ 19.94 184 34 5 364 7004 2870 40% 18 223258 3742 70%
+c - 20.82 184 29 6 365 8395 2803 40% 18 223258 3742 70%
+c I 21.71 184 26 6 366 10007 3958 40% 18 223258 3742 70%
+c - 23.78 185 37 7 367 11227 3496 39% 28 223258 3742 70%
+c s 24.70 185 40 7 368 11750 3858 39% 30 221378 3742 70%
+c v 27.77 185 40 7 368 11750 3858 39% 30 221354 3742 70%
+c w 27.82 185 40 7 368 11750 3856 39% 30 221354 3742 70%
+c t 27.83 185 40 7 368 11750 3850 39% 30 221303 3742 70%
+c e 28.31 209 40 7 368 11750 3638 39% 30 215212 776 15%
+c s 28.39 209 40 7 368 11750 3638 39% 30 214839 776 15%
+c - 32.66 209 40 8 369 14464 3858 77% 32 214839 776 15%
+c p 34.21 209 40 8 369 15003 5699 77% 32 214839 776 15%
+c ] 34.27 209 40 8 369 15004 5700 77% 32 214839 776 15%
+c { 34.27 209 36 8 369 15004 5700 163% 21 214839 776 15%
+c B 34.33 209 36 8 371 15010 5705 163% 21 214839 776 15%
+c } 35.88 209 33 8 422 16638 6817 140% 20 214839 776 15%
+c 1 35.88 209 33 8 422 16638 6817 140% 20 214839 776 15%
+c 
+c --- [ writing output ] -----------------------------------------------------
+c 
+c writing simplified CNF to DIMACS file 'simp/12.cubes1119.adj.simp4'
+c * 35.88 209 33 8 422 16638 6817 140% 20 214839 776 15%
+c opening file to write 'simp/12.cubes1119.adj.simp4'
+c writing 'p cnf 5320 214839' header
+c closing file 'simp/12.cubes1119.adj.simp4'
+c after writing 80611193 bytes 76.9 MB
+c wrote 214839 clauses in 0.50 seconds process time
+c 
+c --- [ writing extension ] --------------------------------------------------
+c 
+c writing extension stack to 'simp/12.cubes1119.adj.ext4'
+c opening file to write 'simp/12.cubes1119.adj.ext4'
+c closing file 'simp/12.cubes1119.adj.ext4'
+c after writing 165963 bytes 0.2 MB
+c wrote 6735 witnesses in 0.00 seconds process time
+c 
+c --- [ result ] -------------------------------------------------------------
+c 
+s SATISFIABLE
+c 
+c --- [ run-time profiling ] -------------------------------------------------
+c 
+c process time taken by individual solving procedures
+c (percentage relative to process time for solving)
+c 
+c        24.16   69.18% search
+c        13.54   38.77% unstable
+c        10.76   30.81% simplify
+c        10.50   30.07% stable
+c         6.00   17.17% probe
+c         3.10    8.87% vivify
+c         0.95    2.73% parse
+c         0.89    2.55% elim
+c         0.18    0.51% subsume
+c         0.12    0.34% lucky
+c         0.07    0.19% ternary
+c   =================================
+c        34.92   95.99% solve
+c 
+c last line shows process time for solving
+c (percentage relative to total process time)
+c 
+c --- [ statistics ] ---------------------------------------------------------
+c 
+c chronological:              3033        18.23 %  of conflicts
+c conflicts:                 16638       476.40    per second
+c decisions:                 45961      1316.00    per second
+c eliminated:                 2966        55.75 %  of all variables
+c fixed:                        52         0.98 %  of all variables
+c learned:                   16313        98.05 %  per conflict
+c learned_lits:            2898636       100.00 %  learned literals
+c minimized:                     0         0.00 %  learned literals
+c shrunken:                1550739        53.50 %  learned literals
+c minishrunken:             295917        10.21 %  learned literals
+c propagations:            3043978         0.09 M  per second
+c reduced:                    6245        37.53 %  per conflict
+c rephased:                      5      3327.60    interval
+c restarts:                    422        39.43    interval
+c stabilizing:                   2        60.11 %  of conflicts
+c substituted:                  19         0.36 %  of all variables
+c subsumed:                   6986         1.02 %  of all clauses
+c strengthened:               9148         1.33 %  of all clauses
+c ternary:                    2055         0.47 %  of resolved
+c vivified:                     26         0.00 %  of all clauses
+c weakened:                   6683         3.08    average size
+c 
+c seconds are measured in process time for solving
+c 
+c --- [ resources ] ----------------------------------------------------------
+c 
+c total process time since initialization:        36.38    seconds
+c total real time since initialization:           36.49    seconds
+c maximum resident set size of process:          303.93    MB
+c 
+c --- [ shutting down ] ------------------------------------------------------
+c 
+c exit 10
+WARNING! DIMACS header mismatch: wrong number of variables.
+============================[ Problem Statistics ]=============================
+|                                                                             |
+|  Number of variables:          2727                                         |
+|  Number of clauses:          214839                                         |
+|  Parse time:                   1.15 s                                       |
+|  Simplification time:          0.03 s                                       |
+|                                                                             |
+============================[ Search Statistics ]====================================================
+| Conflicts |          ORIGINAL         |          LEARNT          | Num Sols |      SUBGRAPHS      |
+|           |    Vars  Clauses Literals |    Limit  Clauses Lit/Cl |          | Canonical Noncanon. |
+=====================================================================================================
+|       102 |    2648   214841 18224535 |     2000      102    161 |        0 |        12         2 |
+|       258 |    2648   214847 18224631 |     2000      258     95 |        0 |        36         8 |
+|      1213 |    2648   215577 18235342 |     2000     1213     32 |        0 |       216       738 |
+|      2398 |    2648   216425 18246339 |     3602     1400     19 |        0 |       348      1586 |
+|      3932 |    2648   217453 18263050 |     3602     2934     21 |        0 |       571      2614 |
+|      6567 |    2648   219329 18291040 |     5002     3769     13 |        0 |       961      4490 |
+|     10661 |    2648   222284 18333534 |     6304     5365     12 |        0 |      1393      7445 |
+|     16787 |    2648   226702 18393114 |     8778     4565     12 |        0 |      2185     11863 |
+|     25534 |    2648   232887 18466551 |     9991     8925     11 |        0 |      2884     18048 |
+|     30181 |    2648   233690 18478610 |    11209     8590     35 |        0 |      3056     18851 |
+|     40716 |    2648   238459 18544122 |    13610     7326     18 |        0 |      3731     23620 |
+|     64916 |    2648   254010 18731820 |    17214     9330     13 |        0 |      5132     39171 |
+=====================================================================================================
+Number of solutions   : 0
+Canonical subgraphs   : 5542           (164 /sec)
+          order  3    : 1              (200000 /sec)
+          order  4    : 1              (1000000 /sec)
+          order  5    : 1              (200000 /sec)
+          order  6    : 1              (50000 /sec)
+          order  7    : 2              (9901 /sec)
+          order  8    : 6              (2594 /sec)
+          order  9    : 24             (764 /sec)
+          order 10    : 116            (369 /sec)
+          order 11    : 539            (232 /sec)
+          order 12    : 3607           (175 /sec)
+          order 13    : 1072           (140 /sec)
+          order 14    : 166            (67 /sec)
+          order 15    : 6              (22 /sec)
+          order 16    : 0              (-nan /sec)
+          order 17    : 0              (-nan /sec)
+          order 18    : 0              (-nan /sec)
+          order 19    : 0              (-nan /sec)
+          order 20    : 0              (-nan /sec)
+          order 21    : 0              (-nan /sec)
+Noncanonical subgraphs: 46782          (1031 /sec)
+          order  3    : 0              (-nan /sec)
+          order  4    : 0              (-nan /sec)
+          order  5    : 0              (-nan /sec)
+          order  6    : 0              (-nan /sec)
+          order  7    : 0              (-nan /sec)
+          order  8    : 0              (-nan /sec)
+          order  9    : 0              (-nan /sec)
+          order 10    : 0              (-nan /sec)
+          order 11    : 0              (-nan /sec)
+          order 12    : 0              (-nan /sec)
+          order 13    : 42220          (1047 /sec)
+          order 14    : 4149           (898 /sec)
+          order 15    : 408            (991 /sec)
+          order 16    : 5              (244 /sec)
+          order 17    : 0              (-nan /sec)
+          order 18    : 0              (-nan /sec)
+          order 19    : 0              (-nan /sec)
+          order 20    : 0              (-nan /sec)
+Canonicity checking   : 33.7352 s
+Noncanonicity checking: 45.3639 s
+Total canonicity time : 79.0991 s
+database reductions   : 13
+restarts              : 250
+conflicts             : 77401          (663 /sec)
+decisions             : 152455         (0.00 % random) (1305 /sec)
+propagations          : 3690775        (31599 /sec)
+conflict literals     : 2357858        (53.56 % deleted)
+actual reward         : 0.129272
+Memory used           : 151.00 MB
+CPU time              : 116.802 s
+
+UNSATISFIABLE
