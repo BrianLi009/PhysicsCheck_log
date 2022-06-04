@@ -19,6 +19,12 @@ if "-q" in sys.argv:
 else:
     quiet = False
 
+if "-f" in sys.argv:
+    printfrac = True
+    sys.argv.remove("-f")
+else:
+    printfrac = False
+
 n = int(sys.argv[1])
 f = open(sys.argv[2], "r")
 
@@ -34,6 +40,26 @@ def print_matrix(M, n):
                 st += str(M[i][j])
                 rowsum += M[i][j]
         print(st, rowsum)
+
+def print_sum_matrix(M, n):
+    for i in range(n):
+        st = ""
+        for j in range(n):
+            if i > j:
+                if M[j][i] == 0 or M[j][i] == 1:
+                    st += "%.3f" % M[j][i] + " "
+                else:
+                    st += "%.3f" % M[j][i] + " "
+                #else:
+                #    st += "?"
+            else:
+                if M[i][j] == 0 or M[i][j] == 1:
+                    st += "%.3f" % M[i][j] + " "
+                else:
+                    st += "%.3f" % M[i][j] + " "
+                #else:
+                #    st += "?"
+        print(st)
 
 def num_edges(M, n):
     edge_count = 0
@@ -88,6 +114,8 @@ max_deg = 0
 total_edges = 0
 count = 0
 
+S = [[0 for j in range(n)] for i in range(n)]
+
 for line in f.readlines():
     M = [[0 for j in range(n)] for i in range(n)]
     i = 0
@@ -95,6 +123,7 @@ for line in f.readlines():
     for v in line.split(" ")[1:-1]:
         if int(v) > 0:
             M[i][j] = 1
+            S[i][j] += 1
         i += 1
         if i == j:
             i = 0
@@ -125,6 +154,13 @@ for line in f.readlines():
         max_deg = max_degree(M, j)
 
 f.close()
+
+for i in range(n):
+    for j in range(n):
+        S[i][j] = S[i][j]/count
+
+if printfrac:
+    print_sum_matrix(S, n)
 
 if count == 0:
     print("No order {0} candidates".format(n))
