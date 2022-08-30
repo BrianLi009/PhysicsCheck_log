@@ -16,5 +16,5 @@ do
 	fi
 done
 
-echo "Calculated $sum runtime"
+echo "Calculated $sum solving time"
 echo "in total $total_files files checked."
