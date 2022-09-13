@@ -1,5 +1,9 @@
 #!/bin/bash
 
+"""
+Computing the cubing time, call with ./count-cube-time.sh <filename>
+"""
+
 f=$1
 
 echo $f

@@ -1,5 +1,9 @@
 #!/bin/bash
 
+"""
+Computing the simplification time, input i as the directory with log files in the form of slurm*.out
+"""
+
 i=$1
 
 touch "$i"_count.log
