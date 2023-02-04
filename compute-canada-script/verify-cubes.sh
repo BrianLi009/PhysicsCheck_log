@@ -28,7 +28,7 @@ sed -e 's/ / -/g' -e 's/--//g' -e 's/-0/0/g' -e 's/a //g' -e 's/u //g' $1 >> $tm
 
 # Ensure cubes exhaustively partition the space
 # This occurs exactly when the negation of the disjunction of cubes is UNSAT
-if [[ $(minisat $tmpfile) =~ "UNSAT" ]]
+if [[ $($SOLVER $tmpfile) =~ "UNSAT" ]]
 then
 	echo "Cubes exhaustively partition the search space"
 else
