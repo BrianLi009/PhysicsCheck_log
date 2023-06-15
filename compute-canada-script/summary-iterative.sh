@@ -27,8 +27,8 @@ perform_verification() {
     local current_var_eliminated=$2
     local increment=$3
 
-    if [ -d "$directory_path" ] && [ -n "$(ls -A "$directory_path")" ]; then
-        echo "Error: $directory_path cannot be found or is empty"
+    if [ -d "$directory_to_verify" ] && [ -n "$(ls -A "$directory_to_verify")" ]; then
+        echo "Error: $directory_to_verify cannot be found or is empty"
     fi
 
     for file in $directory_to_verify/*.log; do
