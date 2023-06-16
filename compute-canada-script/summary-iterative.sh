@@ -44,7 +44,6 @@ perform_verification() {
         else
             echo "$file is not solved, needs to be extended"
             solve_time=( $(grep "CPU time"  $file | cut -f2 -d:) )
-            echo $solve_time
             solve_time_int=${solve_time%.*}
             time_wasted=$((time_wasted += $solve_time_int))
             index=$(echo "$file" | grep -oP '(?<=/)\d+(?=-solve\.log)')
