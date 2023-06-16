@@ -5,8 +5,7 @@ f=$2 #instance file name
 d=$3 #directory to store into
 v=$4 #num of var to eliminate during first cubing stage
 t=$5 #num of conflicts for simplification
-s=$6 #amount of timeout for each solving
-a=$7 #amount of additional variables to remove for each cubing call
+a=$6 #amount of additional variables to remove for each cubing call
 
 #we want the script to: cube, for each cube, submit sbatch to solve, if not solved, call the script again
 
@@ -37,7 +36,7 @@ for i in $(seq 1 $new_index) #1-based indexing for cubes
         command3="timeout ${s}s ./maplesat-solve-verify.sh -l $n $d/$v/simp/$cube_file$i.adj.simp $d/$v/$n-solve/$i-solve.exhaust >> $d/$v/$n-solve/$i-solve.log"
         command4="if ! grep -q 'UNSATISFIABLE' '$d/$v/$n-solve/$i-solve.log'; then sbatch $child_instance-cube.sh; fi"
         #sbatch this line
-        command5="./gen_cubes/concat.sh $child_instance $child_instance.noncanonical > $child_instance.temp; ./gen_cubes/concat.sh $child_instance.temp $child_instance.unit > $child_instance.learnt; ./3-cube-merge-solve-iterative-learnt-cc.sh $n $child_instance.learnt '$d/$v-$i' $(($v + $a)) $t $s $a $(($highest_num+2)) $new_cube_file"
+        command5="./gen_cubes/concat.sh $child_instance $child_instance.noncanonical > $child_instance.temp; ./gen_cubes/concat.sh $child_instance.temp $child_instance.unit > $child_instance.learnt; ./3-cube-merge-solve-iterative-learnt-cc.sh $n $child_instance.learnt '$d/$v-$i' $(($v + $a)) $t $a $(($highest_num+2)) $new_cube_file"
         command="$command1 && $command2 && $command3"
         echo "#!/bin/bash" > $child_instance-solve.sh
         echo "#SBATCH --account=def-cbright" >> $child_instance-solve.sh
