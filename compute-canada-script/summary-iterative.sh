@@ -27,8 +27,8 @@ perform_verification() {
     local current_var_eliminated=$2
     local increment=$3
 
-    if [ -d "$directory_to_verify" ] && [ -n "$(ls -A "$directory_to_verify")" ]; then
-        echo "Error: $directory_to_verify cannot be found or is empty"
+    if [ ! -d "$directory_to_verify" ] && [ -z "$(ls -A "$directory_to_verify")" ]; then
+        echo "Error: $directory_to_verify cannot be found or is empty, verification failed"
         exit 0
     fi
 
@@ -56,6 +56,3 @@ perform_verification() {
 
 directory_to_verify=$d/$v/$n-solve
 perform_verification "$directory_to_verify" $v $a
-
-
-
