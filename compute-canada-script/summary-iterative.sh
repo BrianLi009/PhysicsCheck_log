@@ -29,6 +29,7 @@ perform_verification() {
 
     if [ -d "$directory_to_verify" ] && [ -n "$(ls -A "$directory_to_verify")" ]; then
         echo "Error: $directory_to_verify cannot be found or is empty"
+        exit 0
     fi
 
     for file in $directory_to_verify/*.log; do
