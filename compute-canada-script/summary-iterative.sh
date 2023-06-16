@@ -20,6 +20,8 @@ printf "total number of conflicts: $conflicts"
 
 cd -
 
+time_wasted=0
+
 #verify
 
 perform_verification() {
@@ -41,6 +43,10 @@ perform_verification() {
             fi
         else
             echo "$file is not solved, needs to be extended"
+            solve_time=( $(grep "CPU time"  $file | cut -f2 -d:) )
+            echo $solve_time
+            solve_time_int=${solve_time%.*}
+            time_wasted=$((time_wasted += $solve_time_int))
             index=$(echo "$file" | grep -oP '(?<=/)\d+(?=-solve\.log)')
             result="$current_var_eliminated-$index"
             new_var_to_cube=$(echo "$current_var_eliminated + $increment" | bc)
@@ -56,3 +62,5 @@ perform_verification() {
 
 directory_to_verify=$d/$v/$n-solve
 perform_verification "$directory_to_verify" $v $a
+
+echo "Total time wasted on solving: $time_wasted secs"
