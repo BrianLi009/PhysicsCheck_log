@@ -20,8 +20,6 @@ printf "total number of conflicts: $conflicts"
 
 cd -
 
-time_wasted=0
-
 #verify
 
 perform_verification() {
@@ -29,28 +27,40 @@ perform_verification() {
     local current_var_eliminated=$2
     local increment=$3
 
-    if [ ! -d "$directory_to_verify" ] || [ -z "$(ls -A "$directory_to_verify")" ]; then
-        echo "Error: $directory_to_verify cannot be found or is empty, verification failed"
+    solve_log=$directory_to_verify/$n-solve
+    cube_log=$directory_to_verify/$n-cubes
+
+    if [ ! -d "$solve_log" ] || [ -z "$(ls -A "$solve_log")" ]; then
+        echo "Error: $solve_log cannot be found or is empty, verification failed"
         exit 0
     fi
 
-    for file in $directory_to_verify/*.log; do
+    files=$(ls $cube_log/*.cubes)
+    highest_num=$(echo "$files" | awk -F '[./]' '{print $(NF-1)}' | sort -nr | head -n 1)
+    cube_file=$cube_log/$highest_num.cubes
+
+    num_cubes=$(wc -l "$cube_file" | awk '{print $1}')
+
+    for ((i=1; i<=$num_cubes; i++))
+    do
+        file=$solve_log/$i-solve.log
+        if [ ! -f "$file" ] ; then
+            echo "Error: $file cannot be found or is empty, verification failed"
+            exit 0
+        fi
         if grep -q "UNSATISFIABLE" "$file"; then
-            if grep -q "c VERIFIED" "$file" && grep -q "s VERIFIED" "$file"; then
+            if grep -q "s VERIFIED" "$file"; then
                 echo "$file verified"
             else
                 echo "$file is solved but not verified"
             fi
         else
             echo "$file is not solved, needs to be extended"
-            solve_time=( $(grep "CPU time"  $file | cut -f2 -d:) )
-            solve_time_int=${solve_time%.*}
-            time_wasted=$((time_wasted += $solve_time_int))
             index=$(echo "$file" | grep -oP '(?<=/)\d+(?=-solve\.log)')
             result="$current_var_eliminated-$index"
             new_var_to_cube=$(echo "$current_var_eliminated + $increment" | bc)
-            d="${directory_to_verify%%/$current_var_eliminated*}"
-            new_dir=$d/$result/$new_var_to_cube/$n-solve
+            d="${solve_log%%/$current_var_eliminated*}"
+            new_dir=$d/$result/$new_var_to_cube
             command="perform_verification $new_dir $new_var_to_cube $a"
             #echo $command
             eval $command
@@ -59,7 +69,5 @@ perform_verification() {
 }
 
 
-directory_to_verify=$d/$v/$n-solve
+directory_to_verify=$d/$v
 perform_verification "$directory_to_verify" $v $a
-
-echo "Total time wasted on solving: $time_wasted secs"
