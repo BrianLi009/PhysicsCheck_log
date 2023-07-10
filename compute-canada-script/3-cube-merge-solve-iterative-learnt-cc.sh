@@ -21,8 +21,7 @@ files=$(ls $d/$v/$n-cubes/*.cubes)
 highest_num=$(echo "$files" | awk -F '[./]' '{print $(NF-1)}' | sort -nr | head -n 1)
 echo "currently the cubing depth is $highest_num"
 cube_file=$d/$v/$n-cubes/$highest_num.cubes
-cp $(echo $cube_file) .
-cube_file=$(echo $cube_file | sed 's:.*/::')
+cube_file_name=$(echo $cube_file | sed 's:.*/::')
 new_cube=$((highest_num + 1))
 
 numline=$(< $cube_file wc -l)
@@ -31,9 +30,9 @@ new_index=$((numline))
 for i in $(seq 1 $new_index) #1-based indexing for cubes
     do
         child_instance="$d/$v/simp/${highest_num}.cubes${i}.adj.simp"
-        command1="./gen_cubes/apply.sh $f $cube_file $i > $d/$v/simp/$cube_file$i.adj"
-        command2="./simplification/simplify-by-conflicts.sh $d/$v/simp/$cube_file$i.adj $n $t >> $d/$v/$n-solve/$i-solve.log"
-        command3="./maplesat-solve-verify.sh -l $n $d/$v/simp/$cube_file$i.adj.simp $d/$v/$n-solve/$i-solve.exhaust >> $d/$v/$n-solve/$i-solve.log"
+        command1="./gen_cubes/apply.sh $f $cube_file $i > $d/$v/simp/$cube_file_name$i.adj"
+        command2="./simplification/simplify-by-conflicts.sh $d/$v/simp/$cube_file_name$i.adj $n $t >> $d/$v/$n-solve/$i-solve.log"
+        command3="./maplesat-solve-verify.sh -l $n $d/$v/simp/$cube_file_name$i.adj.simp $d/$v/$n-solve/$i-solve.exhaust >> $d/$v/$n-solve/$i-solve.log"
         command4="if ! grep -q 'UNSATISFIABLE' '$d/$v/$n-solve/$i-solve.log'; then sbatch $child_instance-cube.sh; fi"
         #sbatch this line
         command5="./gen_cubes/concat.sh $child_instance $child_instance.noncanonical > $child_instance.temp; ./gen_cubes/concat.sh $child_instance.temp $child_instance.unit > $child_instance.learnt; ./3-cube-merge-solve-iterative-learnt-cc.sh $n $child_instance.learnt '$d/$v-$i' $(($v + $a)) $t $a $(($highest_num+2)) $new_cube_file"
