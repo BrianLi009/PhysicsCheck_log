@@ -28,6 +28,7 @@ if [ -n "$p" ]; then
     echo "extending on existing cube file $p"
     cp $p $d/$v/$n-cubes
     depth=$(basename "$p" | cut -f1 -d '.')
+    ((depth++))
 fi
 
 #./gen_cubes/cube.sh -a $n $f $v $di $depth
