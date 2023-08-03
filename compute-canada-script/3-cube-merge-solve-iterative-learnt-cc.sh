@@ -15,7 +15,7 @@ mkdir -p $d/$v/log
 mkdir -p $d/$v/$n-cubes
 
 di="$d/$v"
-./gen_cubes/cube.sh -a $n $f $v $di
+./gen_cubes/cube.sh -a -p $n $f $v $di
 
 files=$(ls $d/$v/$n-cubes/*.cubes)
 highest_num=$(echo "$files" | awk -F '[./]' '{print $(NF-1)}' | sort -nr | head -n 1)
