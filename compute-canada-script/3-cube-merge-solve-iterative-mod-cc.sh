@@ -31,7 +31,7 @@ if [ -n "$p" ]; then
     ((depth++))
 fi
 
-#./gen_cubes/cube.sh -a $n $f $v $di $depth
+./gen_cubes/cube.sh -a -p $n $f $v $di $depth
 
 files=$(ls $d/$v/$n-cubes/*.cubes)
 highest_num=$(echo "$files" | awk -F '[./]' '{print $(NF-1)}' | sort -nr | head -n 1)
