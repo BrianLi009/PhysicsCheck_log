@@ -35,7 +35,7 @@ for i in $(seq 1 $new_index) #1-based indexing for cubes
         command3="./maplesat-solve-verify.sh -l $n $d/$v/simp/$cube_file_name$i.adj.simp $d/$v/$n-solve/$i-solve.exhaust >> $d/$v/$n-solve/$i-solve.log"
         command4="if ! grep -q 'UNSATISFIABLE' '$d/$v/$n-solve/$i-solve.log'; then sbatch $child_instance-cube.sh; fi"
         #sbatch this line
-        command5="./gen_cubes/concat.sh $child_instance $child_instance.noncanonical | ./gen_cubes/concat.sh - $child_instance.unit | ./gen_cubes/concat.sh - $child_instance.nonembed > $child_instance.learnt; ./3-cube-merge-solve-iterative-learnt-cc.sh $n $child_instance.learnt '$d/$v-$i' $(($v + $a)) $t $a $(($highest_num+2)) $new_cube_file"
+        command5="command5="./gen_cubes/concat.sh $child_instance $child_instance.noncanonical > $child_instance.temp; ./gen_cubes/concat.sh $child_instance.temp $child_instance.unit | rm $child_instance.temp | ./3-cube-merge-solve-iterative-learnt-cc.sh $n /dev/stdin '$d/$v-$i' $(($v + $a)) $t $a $(($highest_num+2)) $new_cube_file""
         command="$command1 && $command2 && $command3"
         echo "#!/bin/bash" > $child_instance-solve.sh
         echo "#SBATCH --account=def-cbright" >> $child_instance-solve.sh
