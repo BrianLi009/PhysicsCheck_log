@@ -46,10 +46,6 @@ for ((i=1; i<=$c; i++)); do
     echo "#SBATCH --account=rrg-cbright" >> $d/$v/simp/$i-solve.sh
     echo "#SBATCH --time=0-04:00" >> $d/$v/simp/$i-solve.sh
     echo "#SBATCH --mem-per-cpu=4G" >> $d/$v/simp/$i-solve.sh
-    echo "#!/bin/bash" > $d/$v/simp/$i-cube.sh
-    echo "#SBATCH --account=def-cbright" >> $d/$v/simp/$i-cube.sh
-    echo "#SBATCH --time=0-04:00" >> $d/$v/simp/$i-cube.sh
-    echo "#SBATCH --mem-per-cpu=4G" >> $d/$v/simp/$i-cube.sh
     while [[ $cube_index -lt $new_index ]]; do
         cube_index=$(($i + $factor*$c))
         ((factor++))
@@ -59,7 +55,7 @@ for ((i=1; i<=$c; i++)); do
             command1="./gen_cubes/apply.sh $f $cube_file $cube_index > $d/$v/simp/$cube_file_name$cube_index.adj"
             command2="./simplification/simplify-by-conflicts.sh $d/$v/simp/$cube_file_name$cube_index.adj $n $t"
             command3="./maplesat-solve-verify.sh -l $n $d/$v/simp/$cube_file_name$cube_index.adj.simp $d/$v/$n-solve/$cube_index-solve.exhaust >> $d/$v/$n-solve/$cube_index-solve.log"
-            command4="if ! grep -q 'UNSATISFIABLE' '$d/$v/$n-solve/$i-solve.log'; then sbatch $child_instance-cube.sh; fi"
+            command4="if ! grep -q 'UNSATISFIABLE' '$d/$v/$n-solve/$cube_index-solve.log'; then sbatch $child_instance-cube.sh; fi"
             command="$command1 && $command2 && $command3 && $command4"
             echo $command >> $d/$v/simp/$i-solve.sh
         fi
