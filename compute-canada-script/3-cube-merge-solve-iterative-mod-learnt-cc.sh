@@ -61,14 +61,3 @@ for ((i=1; i<=$c; i++)); do
         fi
     done
 done
-
-for i in $(seq 1 $new_index) #1-based indexing for cubes
-    do
-        child_instance="$d/$v/simp/${highest_num}.cubes${i}.adj.simp"
-        command5="./gen_cubes/concat.sh $child_instance $child_instance.noncanonical > $child_instance.temp; ./gen_cubes/concat.sh $child_instance.temp $child_instance.unit > $child_instance.learnt; rm $child_instance.noncanonical; rm $child_instance.temp; rm $child_instance.unit; ./3-cube-merge-solve-iterative-mod-learnt-cc.sh $n $child_instance.learnt '$d/$v-$i' $v $t $a $c"
-        echo "#!/bin/bash" > $child_instance-cube.sh
-        echo "#SBATCH --account=def-cbright" >> $child_instance-cube.sh
-        echo "#SBATCH --time=0-04:00" >> $child_instance-cube.sh
-        echo "#SBATCH --mem-per-cpu=4G" >> $child_instance-cube.sh
-        echo $command5 >> $child_instance-cube.sh
-    done
