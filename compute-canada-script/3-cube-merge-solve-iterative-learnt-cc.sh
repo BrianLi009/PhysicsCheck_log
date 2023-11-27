@@ -39,11 +39,11 @@ for i in $(seq 1 $new_index) #1-based indexing for cubes
         command="$command1 && $command2 && $command3"
         echo "#!/bin/bash" > $child_instance-solve.sh
         echo "#SBATCH --account=def-cbright" >> $child_instance-solve.sh
-        echo "#SBATCH --time=0-04:00" >> $child_instance-solve.sh
+        echo "#SBATCH --time=1-00:00" >> $child_instance-solve.sh
         echo "#SBATCH --mem-per-cpu=4G" >> $child_instance-solve.sh
         echo "#!/bin/bash" > $child_instance-cube.sh
         echo "#SBATCH --account=def-cbright" >> $child_instance-cube.sh
-        echo "#SBATCH --time=0-04:00" >> $child_instance-cube.sh
+        echo "#SBATCH --time=1-00:00" >> $child_instance-cube.sh
         echo "#SBATCH --mem-per-cpu=4G" >> $child_instance-cube.sh
         echo $command >> $child_instance-solve.sh
         echo $command4 >> $child_instance-solve.sh
